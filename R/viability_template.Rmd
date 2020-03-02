@@ -1,0 +1,79 @@
+---
+title: "viability_template"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(magrittr)
+```
+
+```{r}
+drug_max <- 50
+
+drug_concentrations <- drug_max*(0.5^(10:0))
+
+conditions <- c('CT','shMTHFR1','shMTHFR2', NA)
+
+
+```
+
+
+```{r}
+ID_dataframe <- tibble(
+  condition = rep(conditions, each = 7*11),
+  concentration = rep(drug_concentrations, 7*length(conditions)),
+  replicate = rep(1:7, 11*length(conditions))
+  ) %>% 
+  arrange(condition, concentration, replicate)
+
+ID_dataframe %<>% 
+  mutate(
+    row = c(rep_len(1:7, length.out = 77*2), rep_len(8:14, length.out = 77*2)), 
+    column = rep(c(rep(1:11, each = 7), rep(22:12, each = 7)), 2)
+    )
+
+write_csv(ID_dataframe, path = '../MTHFR/Viability/templates/OCI2_shMTHFR_Venetoclax_02262020.csv')
+
+```
+
+
+
+__OLD__
+
+
+```{r}
+ID_dataframe <- tibble(
+  condition = rep(conditions, each = 7*11),
+  concentration = rep(drug_concentrations, 7*length(conditions)),
+  replicate = rep(paste("rep", 1:7, sep = "_"), 11*length(conditions))
+  ) %>% 
+  arrange(condition, concentration, replicate)
+
+
+IDs <- paste(ID_dataframe$condition, ID_dataframe$concentration, ID_dataframe$replicate, sep = "_") #useless? we can keep the different columns
+
+```
+
+
+```{r}
+template <- tibble(ID = IDs, 
+                      row = c(rep_len(1:7, length.out = 77*2), rep_len(8:14, length.out = 77*2)), 
+                      column = rep(c(rep(1:11, each = 7), rep(22:12, each = 7)), 2)
+                      ) %>% 
+  mutate(ID = str_replace(.$ID, ".*NA.*", replacement = NA_character_))
+
+write_csv(template, path = '../MTHFR/Viability/templates/OCI2_shMTHFR_Venetoclax_02262020.csv')
+```
+
+```{r}
+#### USELESS AS WE ARE GOING TO DO A LEFT JOIN ON THE TIDYVERSE DATA
+template %<>% pivot_wider(names_from = column, values_from = IDs) 
+
+template <- template[, c(1:22, setdiff(names(template), 1:22))]
+
+
+write_csv(template, path = '../MTHFR/Viability/templates/OCI2_shMTHFR_Venetoclax_02262020.csv')
+```
+
