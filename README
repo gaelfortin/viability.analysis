@@ -1,0 +1,7 @@
+# Viability analysis, the package to analyze viability experiment results
+
+## TO DO
+- function for generating plate template
+- wiki of plate templates (rows excluded, condition order...)
+- function to output viability graph
+- function to output IC50s
