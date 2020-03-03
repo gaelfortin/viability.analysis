@@ -1,0 +1,18 @@
+Package: viability.analysis
+Type: Package
+Title: Viability Experiment Analysis Package
+Version: 0.1
+Date: 2020-03-03
+Authors@R: 'Gael Fortin <gael.fortin@inserm.fr> [aut,cre]'
+Maintainer: 'Gael Fortin' <gael.fortin@inserm.fr> 
+Description: Viability experiment analysis package.
+License: GPL-3
+LazyData: TRUE
+VignetteBuilder: knitr
+biocViews: Software, Hematology, Oncology
+Encoding: UTF-8
+Depends: R (>= 3.6.1)
+Imports:
+    tidyverse
+RoxygenNote: 7.0.2
+Roxygen: list(markdown = TRUE)

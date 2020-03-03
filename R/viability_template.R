@@ -9,7 +9,7 @@
 #' @param conditions `<vector>` Conditions used in the assay. 
 #' Usually different cell lines or cells with different treatments. 
 #' 4 conditions are expected. If less than 4 conditions were used, complete with `<NA>`
-#' @param save_to `<string>` Path to file in which to save template
+#' @param save_to `<string>` Path to file in which to save the template
 #' @import dplyr
 #' @import tibble
 #' @export
