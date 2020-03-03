@@ -16,5 +16,6 @@ Usually different cell lines or cells with different treatments.
 \item{save_to}{\verb{<string>} Path to file in which to save the template}
 }
 \description{
-Generate a template of the plate used for a viability assay
+Uses given maximum drug concentration and conditions to generate a dataframe
+which links each well to a drug concentration, a condition, and a replicate number.
 }

@@ -13,12 +13,25 @@
 #'
 
 viability_graph <- function(template, viability_data){
+  
+  p <- .viability_stats(template, viability_data) %>% 
+    ggplot(aes(x = log(concentration), y = relative_viability, col = condition))+
+    geom_point() +
+    stat_smooth(method = loess, se = FALSE)
+  
+  return(p)
+  
+}
 
+
+
+
+.viability_stats <- function(template, viability_data){
   template <- read_csv(template, col_types = cols())
   
   viability_data <- readxl::read_excel(viability_data, col_names = FALSE)
   colnames(viability_data) <- 1:22
- 
+  
   
   viability_data %<>% 
     mutate(row=row_number()) %>% 
@@ -44,19 +57,9 @@ viability_graph <- function(template, viability_data){
   viability_stats %<>% 
     left_join(conditions_max_mean, by = "condition") %>% 
     mutate(relative_viability = mean/mean_0*100)
-
   
-  p <- viability_stats %>% 
-    ggplot(aes(x = log(concentration), y = relative_viability, col = condition))+
-    geom_point() +
-    stat_smooth(method = loess, se = FALSE)
-  
-  return(p)
-  
+  return(viability_stats)
 }
-
-
-
 
 
 
