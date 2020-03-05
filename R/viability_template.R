@@ -6,7 +6,7 @@
 #'
 #'
 #'
-#' @param drug_max Maximum drug concentration used for the assay
+#' @param drug_max Maximum drug concentration used for the assay (in M)
 #' @param conditions `<vector>` Conditions used in the assay. 
 #' Usually different cell lines or cells with different treatments. 
 #' 4 conditions are expected. If less than 4 conditions were used, complete with `<NA>`

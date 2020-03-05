@@ -5,6 +5,7 @@
 #'
 #' @param template Path to template file
 #' @param viability_data Path to viability plate results .xlsx file
+#' @param drug_info Information on the drug tested to show in viability graph
 #' 
 #' @import tidyverse
 #' @import magrittr
@@ -12,12 +13,13 @@
 #'
 #'
 
-viability_graph <- function(template, viability_data){
+viability_graph <- function(template, viability_data, drug_info = "drug (M)"){
   
   p <- .viability_stats(template, viability_data) %>% 
     ggplot(aes(x = log(concentration), y = relative_viability, col = condition))+
       geom_point()+
       geom_errorbar(aes(ymin=relative_viability-relative_sem, ymax=relative_viability+relative_sem), width=.2)+
+      xlab(paste0("log[", drug_info, "]"))+
       theme_classic()+
       stat_smooth(method = loess, se = FALSE)
   
