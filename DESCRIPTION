@@ -1,7 +1,7 @@
 Package: viability.analysis
 Type: Package
 Title: Viability Experiment Analysis Package
-Version: 1.0
+Version: 1.1
 Date: 2020-03-03
 Authors@R: 'Gael Fortin <gael.fortin@inserm.fr> [aut,cre]'
 Maintainer: 'Gael Fortin' <gael.fortin@inserm.fr> 

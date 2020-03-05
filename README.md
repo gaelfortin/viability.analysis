@@ -38,8 +38,5 @@ autocomplete conditions to 4 if less than 4 conditions are given
 - wiki of plate templates (rows excluded, condition order...)
 
 - function to output viability graph
-change SD for SEM
-add SEM for each dot
-add choice of drug for X axis title
 
 - function to output IC50s
