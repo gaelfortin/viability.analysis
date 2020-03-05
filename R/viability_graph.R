@@ -31,7 +31,7 @@ viability_graph <- function(template, viability_data){
 .viability_stats <- function(template, viability_data){
   template <- read_csv(template, col_types = cols())
   
-  viability_data <- readxl::read_excel(viability_data, col_names = FALSE)
+  viability_data <- suppressMessages(readxl::read_excel(viability_data, col_names = FALSE))
   colnames(viability_data) <- 1:22
   
   
