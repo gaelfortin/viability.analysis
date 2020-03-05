@@ -20,6 +20,7 @@ viability_graph <- function(template, viability_data, drug_info = "drug (M)"){
       geom_point()+
       geom_errorbar(aes(ymin=relative_viability-relative_sem, ymax=relative_viability+relative_sem), width=.2)+
       xlab(paste0("log[", drug_info, "]"))+
+      ylab("Normalized intensity")+
       theme_classic()+
       stat_smooth(method = loess, se = FALSE)
   
