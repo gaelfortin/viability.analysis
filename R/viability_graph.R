@@ -16,8 +16,10 @@ viability_graph <- function(template, viability_data){
   
   p <- .viability_stats(template, viability_data) %>% 
     ggplot(aes(x = log(concentration), y = relative_viability, col = condition))+
-    geom_point() +
-    stat_smooth(method = loess, se = FALSE)
+      geom_point()+
+      geom_errorbar(aes(ymin=relative_viability-relative_sem, ymax=relative_viability+relative_sem), width=.2)+
+      theme_classic()+
+      stat_smooth(method = loess, se = FALSE)
   
   return(p)
   
@@ -46,7 +48,7 @@ viability_graph <- function(template, viability_data){
     group_by(condition, concentration) %>% 
     summarise(
       mean = mean(viability),
-      sd = sd(viability)
+      sem = sd(viability)/sqrt(length(viability))
     )
   
   conditions_max_mean <- viability_stats %>% #extract viability at the lowest concentration
@@ -56,7 +58,8 @@ viability_graph <- function(template, viability_data){
   
   viability_stats %<>% 
     left_join(conditions_max_mean, by = "condition") %>% 
-    mutate(relative_viability = mean/mean_0*100)
+    mutate(relative_viability = mean/mean_0*100,
+           relative_sem = sem/mean*100)
   
   return(viability_stats)
 }
