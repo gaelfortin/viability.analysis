@@ -8,6 +8,7 @@
 #' @param drug_info Information on the drug tested to show in viability graph
 #' 
 #' @import tidyverse
+#' @import readxl
 #' @import magrittr
 #' @export
 #'
