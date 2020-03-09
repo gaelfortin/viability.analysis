@@ -20,10 +20,10 @@ viability_template <- function(drug_max, conditions, save_to){
   
   ID_dataframe <- tibble(
     condition = rep(conditions, each = 7*11),
-    concentration = rep(drug_concentrations, 7*length(conditions)),
-    replicate = rep(1:7, 11*length(conditions))
+    concentration = rep(drug_concentrations, 7*length(conditions))#,
+    # replicate = rep(1:7, 11*length(conditions)
   ) %>% 
-    arrange(condition, concentration, replicate)
+    arrange(factor(condition, levels = conditions), concentration)
   
   ID_dataframe %<>% 
     mutate(

@@ -19,7 +19,7 @@ viability_graph <- function(template, viability_data, drug_info = "drug (M)"){
   p <- .viability_stats(template, viability_data) %>% 
     ggplot(aes(x = log(concentration), y = relative_viability, col = condition))+
       geom_point()+
-      geom_errorbar(aes(ymin=relative_viability-relative_sem, ymax=relative_viability+relative_sem), width=.2)+
+      geom_errorbar(aes(ymin=relative_viability-relative_sem, ymax=relative_viability+relative_sem), width=.1)+
       xlab(paste0("log[", drug_info, "]"))+
       ylab("Normalized intensity")+
       theme_classic()+
