@@ -39,7 +39,7 @@ viability_IC50 <- function(template, viability_data){
     select(x,y)
   
   
-  IC50 <- fit_curve[which(abs(fit_curve$y - 50) == min(abs(fit_curve$y - 50))),1] #identify closest value from 70 and the corresponding          concentration
+  IC50 <- fit_curve[which(abs(fit_curve$y - 50) == min(abs(fit_curve$y - 50))),1] #identify closest value from 50 and the corresponding          concentration
   IC50 <- round(IC50, digits = 3)
   return(IC50)
  
