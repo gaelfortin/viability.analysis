@@ -37,6 +37,6 @@ autocomplete conditions to 4 if less than 4 conditions are given
 
 - wiki of plate templates (rows excluded, condition order...)
 
-- function to output viability graph
+- viability graph function
+function to remove outliers
 
-- function to output IC50s
