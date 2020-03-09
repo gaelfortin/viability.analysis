@@ -39,4 +39,4 @@ autocomplete conditions to 4 if less than 4 conditions are given
 
 - viability graph function
 function to remove outliers
-
+update relative_mean calculation with `mean[1]` instead of `slice(1)`
