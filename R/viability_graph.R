@@ -51,8 +51,8 @@ viability_graph <- function(template, viability_data, drug_info = "drug (M)"){
     viability_data %>% 
     group_by(condition, concentration) %>% 
     summarise(
-      mean = mean(viability),
-      sem = sd(viability)/sqrt(length(viability))
+      mean = mean(viability, na.rm = TRUE),
+      sem = sd(viability, na.rm = TRUE)/sqrt(length(viability))
     )
   
   conditions_max_mean <- viability_stats %>% #extract viability at the lowest concentration
